@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
 
 /**
  * User controller.
@@ -44,10 +46,17 @@ class UsersController extends Controller
         $form = $this->createForm('Blog\BlogBundle\Form\UsersType', $user);
         $form->handleRequest($request);
 
+          
         if ($form->isSubmitted() && $form->isValid()) {
+            //$encoder = $this->get('security.password_encoder');
+            //$password = $encoder->encodePassword($user, $user->getPassword());
+            //$user->setPassword($password);
+            //$admin->setRole('ROLE_USER');
+           
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
+           return $this->redirectToRoute('login');
 
             return $this->redirectToRoute('users_show', array('id' => $user->getId()));
         }

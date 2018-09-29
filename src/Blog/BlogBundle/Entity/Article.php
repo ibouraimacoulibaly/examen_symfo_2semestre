@@ -4,7 +4,8 @@ namespace Blog\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Symfony\Component\Form\Extension\Core\Type\EntityType;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Article
@@ -54,17 +55,31 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="etat_publication", type="string", length=255)
+     * @ORM\Column(name="etat_publication", type="boolean", length=255)
      */
     private $etatPublication;
 
     /**
      * @var string
      *
+     * @ORM\Column(name="commentaire", type="string", length=255)
+     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="article", cascade={"persist", "remove"})
+     */
+    private $commentaire;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="categorie", type="string", length=255)
+     * @ORM\OneToMany(targetEntity="Categorie", mappedBy="article", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="region_id", referencedColumnName="id")
      */
     private $categorie;
-
+    
+    public function __construct()
+     {
+         $this->Categorie = new ArrayCollection();
+     }
     /**
      * @var string
      *@Assert\Image()
@@ -206,11 +221,11 @@ class Article
     /**
      * Set categorie
      *
-     * @param string $categorie
+     * @param Blog\BlogBundle\Entity\Categorie  $categorie
      *
      * @return Article
      */
-    public function setCategorie($categorie)
+    public function setCategorie(Blog\BlogBundle\Entity\Categorie $categorie)
     {
         $this->categorie = $categorie;
 
@@ -249,5 +264,29 @@ class Article
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Set commentaire.
+     *
+     * @param string $commentaire
+     *
+     * @return Article
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Get commentaire.
+     *
+     * @return string
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
     }
 }

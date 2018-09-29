@@ -1,12 +1,14 @@
 # To get started with security, check out the documentation:
 # https://symfony.com/doc/current/security.html
 security:
-
-    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        in_memory:
-            memory: ~
-
+        database_users:
+            entity: { class: Blog\blogBundle:Users, property: username }
+       
+    encoders:
+        Blog\blogBundle\Entity\Users: bcrypt
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+  
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
@@ -22,3 +24,8 @@ security:
 
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
+ 
+    access_control:
+      - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+       #- { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+      

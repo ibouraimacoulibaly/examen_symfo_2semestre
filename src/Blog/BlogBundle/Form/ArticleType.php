@@ -6,6 +6,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class ArticleType extends AbstractType
 {
@@ -21,6 +24,14 @@ class ArticleType extends AbstractType
             ->add('auteur')
             ->add('etatPublication')
             ->add('categorie')
+            //, EntityType::class, [
+              //  'class'    => 'Blog\BlogBundle\Entity\Categorie',
+               // 'label'    => 'Categorie',                
+               // 'multiple' => true,
+               // 'expanded' => true
+           // ])
+           
+                
             ->add('image', fileType::class, array('label'=>'insert une image'));
     }/**
      * {@inheritdoc}

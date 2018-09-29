@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CategorieType extends AbstractType
+class CommentaireType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -20,7 +20,7 @@ class CategorieType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Blog\BlogBundle\Entity\Categorie'
+            'data_class' => 'Blog\BlogBundle\Entity\Commentaire'
         ));
     }
 
@@ -29,7 +29,7 @@ class CategorieType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'blog_blogbundle_categorie';
+        return 'blog_blogbundle_commentaire';
     }
 
 

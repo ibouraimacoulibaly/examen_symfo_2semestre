@@ -3,6 +3,7 @@
 namespace Blog\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Users
@@ -39,6 +40,7 @@ class Users
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=255)
+     * 
      */
     private $username;
 
@@ -161,5 +163,28 @@ class Users
     {
         return $this->password;
     }
-}
 
+    /**
+     * Set sexe.
+     *
+     * @param string $sexe
+     *
+     * @return Users
+     */
+    public function setSexe($sexe)
+    {
+        $this->sexe = $sexe;
+
+        return $this;
+    }
+
+    /**
+     * Get sexe.
+     *
+     * @return string
+     */
+    public function getSexe()
+    {
+        return $this->sexe;
+    }
+}

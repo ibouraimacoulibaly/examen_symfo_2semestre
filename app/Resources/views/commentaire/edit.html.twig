@@ -1,5 +1,4 @@
-<link rel="stylesheet" href="{{ asset('template/bootstrap.min.css') }}" />
-<link rel="stylesheet" href="{{ asset('template/bootstrap.css') }}" />
+{% extends 'base.html.twig' %}
 
 {% block body %}
 <nav class="navbar navbar-default">
@@ -17,9 +16,9 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="">Home <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">article </a></li>
+                    <li><a href="#">liste article </a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">liste article <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categorie <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">sport </a></li>
                             <li><a href="#">developpement</a></li>
@@ -48,33 +47,16 @@
             </div>
         </div>
     </nav>
-<div class="container">
-    <h1>Article</h1>
-       <h2>{{ article.titre }}</h2>
-   
-      
-                <div class="content">
-                <img src="{{ asset ('imag/' ~ article.image) }}" width="500" height="250"></div>
-            
-            
-                
-                <h3>publier par  {{ article.auteur }}</h3>
-            
-                <div class="metadata">{% if article.dateParution %}{{ article.dateParution|date('Y-m-d H:i:s') }}{% endif %}</div>
-            </tr>
-            <tr>
-               
-                <div class="container">{{ article.description }}</div>
-           
-  
-    
-       <div>
+    <h1>Commentaire edit</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Edit" />
+    {{ form_end(edit_form) }}
+
     <ul>
         <li>
-            <a href="{{ path('article_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('article_edit', { 'id': article.id }) }}">Edit</a>
+            <a href="{{ path('commentaire_index') }}">Back to the list</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

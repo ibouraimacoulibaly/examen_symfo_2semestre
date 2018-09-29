@@ -5,12 +5,12 @@ namespace Blog\BlogBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Categorie
+ * Commentaire
  *
- * @ORM\Table(name="categorie")
- * @ORM\Entity(repositoryClass="Blog\BlogBundle\Repository\CategorieRepository")
+ * @ORM\Table(name="commentaire")
+ * @ORM\Entity(repositoryClass="Blog\BlogBundle\Repository\CommentaireRepository")
  */
-class Categorie
+class Commentaire
 {
     /**
      * @var int
@@ -30,7 +30,7 @@ class Categorie
 
 
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -40,11 +40,11 @@ class Categorie
     }
 
     /**
-     * Set nom
+     * Set nom.
      *
      * @param string $nom
      *
-     * @return Categorie
+     * @return Commentaire
      */
     public function setNom($nom)
     {
@@ -54,7 +54,7 @@ class Categorie
     }
 
     /**
-     * Get nom
+     * Get nom.
      *
      * @return string
      */

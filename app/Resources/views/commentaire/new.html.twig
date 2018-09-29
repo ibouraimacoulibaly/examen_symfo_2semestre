@@ -1,7 +1,4 @@
-<link rel="stylesheet" href="{{ asset('template/bootstrap.min.css') }}" />
-<link rel="stylesheet" href="{{ asset('template/bootstrap.css') }}" />
-
-{% block body %}
+{% extends 'base.html.twig' %}
 <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -17,9 +14,9 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="">Home <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">article </a></li>
+                    <li><a href="#">liste article </a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">liste article <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categorie <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">sport </a></li>
                             <li><a href="#">developpement</a></li>
@@ -48,38 +45,18 @@
             </div>
         </div>
     </nav>
-<div class="container">
-    <h1>Article</h1>
-       <h2>{{ article.titre }}</h2>
-   
-      
-                <div class="content">
-                <img src="{{ asset ('imag/' ~ article.image) }}" width="500" height="250"></div>
-            
-            
-                
-                <h3>publier par  {{ article.auteur }}</h3>
-            
-                <div class="metadata">{% if article.dateParution %}{{ article.dateParution|date('Y-m-d H:i:s') }}{% endif %}</div>
-            </tr>
-            <tr>
-               
-                <div class="container">{{ article.description }}</div>
-           
-  
-    
-       <div>
+
+{% block body %}
+    <h1>Commentaire creation</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
     <ul>
         <li>
-            <a href="{{ path('article_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('article_edit', { 'id': article.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
+            <a href="{{ path('commentaire_index') }}">Back to the list</a>
         </li>
     </ul>
 {% endblock %}

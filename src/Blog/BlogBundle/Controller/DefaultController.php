@@ -14,4 +14,11 @@ class DefaultController extends Controller
     {
         return $this->render('@BlogBlog/Default/index.html.twig');
     }
+     /**
+     * @Route("/login")
+     */
+    public function loginAction()
+    {
+        return $this->render('@BlogBlog/Default/login.html.twig');
+    }
 }

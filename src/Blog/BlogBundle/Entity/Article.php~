@@ -4,7 +4,8 @@ namespace Blog\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Symfony\Component\Form\Extension\Core\Type\EntityType;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Article
@@ -61,10 +62,23 @@ class Article
     /**
      * @var string
      *
+     * @ORM\Column(name="commentaire", type="string", length=255)
+     */
+    private $commentaire;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="categorie", type="string", length=255)
+     * @ORM\Column(name="region", type="string", length=255)
+     * @ORM\JoinColumn(name="region_id", referencedColumnName="id")
      */
     private $categorie;
-
+    
+    public function __construct()
+     {
+         $this->Categorie = new ArrayCollection();
+     }
     /**
      * @var string
      *@Assert\Image()
@@ -206,11 +220,11 @@ class Article
     /**
      * Set categorie
      *
-     * @param string $categorie
+     * @param Blog\BlogBundle\Entity\Categorie  $categorie
      *
      * @return Article
      */
-    public function setCategorie($categorie)
+    public function setCategorie(Blog\BlogBundle\Entity\Categorie $categorie)
     {
         $this->categorie = $categorie;
 
@@ -251,4 +265,3 @@ class Article
         return $this->image;
     }
 }
-
