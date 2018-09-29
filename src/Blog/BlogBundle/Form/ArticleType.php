@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class ArticleType extends AbstractType
 {
@@ -22,7 +23,8 @@ class ArticleType extends AbstractType
             ->add('dateParution')
             ->add('description')
             ->add('auteur')
-            ->add('etatPublication')
+            ->add('etatPublication', CheckboxType::class, array('label' => 'voulez vous publier article si oui confirmer'
+            ))
             ->add('categorie')
             //, EntityType::class, [
               //  'class'    => 'Blog\BlogBundle\Entity\Categorie',

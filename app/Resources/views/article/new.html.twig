@@ -48,7 +48,24 @@
             </div>
         </div>
     </nav>
-    <h1>Article creation</h1>
+     <style type="text/css">
+     .container{
+         width: 700px;
+         margin-left: 300px;
+         border-style: solid;
+      border-width: 5px;
+     }
+     h5{
+         text-align: center;
+     }
+     div.solid {border-style: solid;}
+     #btn{
+         margin-left: 100px;
+     }
+
+      </style>
+
+    <h5>Article creation</h5>
 
     {{ form_start(form) }}
     <div class="container">
@@ -62,6 +79,7 @@
         {{ form_label(form.dateParution) }}
         {{ form_errors(form.dateParution) }}
         {{ form_widget(form.dateParution, {'attr': { 'class': 'form-control'}}) }}
+        
         <div class="form-group">
 
         {{ form_label(form.description) }}
@@ -88,14 +106,11 @@
         {{ form_widget(form.image, {'attr': { 'class': 'form-control'}}) }}
 
         
-        <input class="btn btn-primary" type="submit" value="Create" />
+        <input id="btn" class="btn btn-primary" type="submit" value="Create" />
     {{ form_end(form) }}
 
 
-    <ul>
-        <li>
-            <a href="{{ path('article_index') }}">Back to the list</a>
-        </li>
-    </ul>
+            <a class="btn btn-default" href="{{ path('article_index') }}">Back to the list</a>
+     
     </div>
 {% endblock %}
